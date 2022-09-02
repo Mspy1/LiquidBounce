@@ -19,7 +19,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      
+      - name: Grant all permissions for theme
         run: sudo chmod -R 777 theme
       - uses: burrunan/gradle-cache-action@v1
         name: Build
@@ -27,9 +27,8 @@ jobs:
           job-id: jdk17
           arguments: genSources build
           gradle-version: wrapper
-          
       - name: Grant all permissions for theme
         uses: actions/upload-artifact@v3
-        with: 
-          name: static-site 
+        with:
+          name: static-site
           path: ./home/runner/work/LiquidBounce/LiquidBounce/
