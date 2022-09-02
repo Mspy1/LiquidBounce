@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ nextgen ]
     
-defaults:
-      run:
-        working-directory: ./usr/bin/bash
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -34,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: static-site
-          path: ./usr/bin/bash
+          path: /home/runner/work/LiquidBounce/LiquidBounce/build/
