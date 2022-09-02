@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches: [ legacy ]
+  pull_request:
+    branches: [ legacy ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup java
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: 8
+          cache: "gradle"
+      - name: Build
+        run: ./gradlew setupCiWorkspace && ./gradlew build
+      - name: Grant all permissions for theme
+        uses: actions/upload-artifact@v3
+        with:
+          name: static-site
+          path: /home/runner/work/LiquidBounce/LiquidBounce/build/
